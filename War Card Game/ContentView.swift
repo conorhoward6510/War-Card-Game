@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var playerScore = 0
+    @State var cpuScore = 0
+    @State var playerCard: Int?
+    @State var cpuCard: Int?
+    
     var body: some View {
         ZStack {
             Image("background-cloth")
@@ -23,12 +29,12 @@ struct ContentView: View {
                 Spacer()
                 
                 HStack(spacing: 24) {
-                    Image("back")
+                    Image(playerCard != nil ? "card\(playerCard!)" : "back")
                         .resizable()
                         .aspectRatio(64/89, contentMode: .fit)
                         .frame(maxWidth: 160)
 
-                    Image("back")
+                    Image(cpuCard != nil ? "card\(cpuCard!)" : "back")
                         .resizable()
                         .aspectRatio(64/89, contentMode: .fit)
                         .frame(maxWidth: 160)
@@ -52,13 +58,13 @@ struct ContentView: View {
                     VStack {
                         Text("Player")
                             .bold()
-                        Text("0")
+                        Text("\(playerScore)")
                     }
                     
                     VStack {
                         Text("CPU")
                             .bold()
-                        Text("0")
+                        Text("\(cpuScore)")
                     }
                 }
                 .foregroundStyle(.white)
