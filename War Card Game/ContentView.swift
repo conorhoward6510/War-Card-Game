@@ -14,6 +14,21 @@ struct ContentView: View {
     @State var playerCard: Int?
     @State var cpuCard: Int?
     
+    func dealCards() {
+        
+        playerCard = Int.random(in: 2...14)
+        cpuCard = Int.random(in: 2...14)
+        
+        guard let playerCard, let cpuCard else {return}
+        
+        if playerCard > cpuCard {
+            playerScore += 1
+        } else if cpuCard > playerCard {
+            cpuScore += 1
+        }
+        
+    }
+    
     var body: some View {
         ZStack {
             Image("background-cloth")
@@ -46,6 +61,7 @@ struct ContentView: View {
                 
                 Button {
                     print("Deal Pressed")
+                    dealCards()
                 } label: {
                     Image("button")
                         .shadow(radius: 15)
